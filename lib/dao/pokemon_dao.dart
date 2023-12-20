@@ -10,8 +10,11 @@ abstract class PokemonDao {
   Stream<Pokemon?> findPokemonById(int id);
 
   @insert
-  Stream<void> insertPokemon(Pokemon pokemon);
+  Future<void> insertPokemon(Pokemon pokemon);
 
   @delete
   Future<void> deletePokemon(Pokemon pokemon);
+
+  @Query('SELECT COUNT(*) FROM Pokemon WHERE id = :id')
+  Future<int?> isPokemonCapturado(int id);
 }
